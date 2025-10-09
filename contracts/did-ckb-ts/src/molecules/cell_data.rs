@@ -174,21 +174,21 @@ impl From<Cursor> for StringOpt {
     }
 }
 #[derive(Clone)]
-pub struct DidWeb5DataV1 {
+pub struct DidCkbDataV1 {
     pub cursor: Cursor,
 }
-impl From<Cursor> for DidWeb5DataV1 {
+impl From<Cursor> for DidCkbDataV1 {
     fn from(cursor: Cursor) -> Self {
-        DidWeb5DataV1 { cursor }
+        DidCkbDataV1 { cursor }
     }
 }
-impl DidWeb5DataV1 {
+impl DidCkbDataV1 {
     pub fn document(&self) -> Result<Cursor, Error> {
         let cur = self.cursor.table_slice_by_index(0usize)?;
         cur.convert_to_rawbytes()
     }
 }
-impl DidWeb5DataV1 {
+impl DidCkbDataV1 {
     pub fn local_id(&self) -> Result<Option<Cursor>, Error> {
         let cur = self.cursor.table_slice_by_index(1usize)?;
         if cur.option_is_none() {
@@ -199,16 +199,16 @@ impl DidWeb5DataV1 {
         }
     }
 }
-impl DidWeb5DataV1 {
+impl DidCkbDataV1 {
     pub fn verify(&self, compatible: bool) -> Result<(), Error> {
         self.cursor.verify_table(2usize, compatible)?;
         Ok(())
     }
 }
-pub enum DidWeb5Data {
-    DidWeb5DataV1(DidWeb5DataV1),
+pub enum DidCkbData {
+    DidCkbDataV1(DidCkbDataV1),
 }
-impl TryFrom<Cursor> for DidWeb5Data {
+impl TryFrom<Cursor> for DidCkbData {
     type Error = Error;
     fn try_from(cur: Cursor) -> Result<Self, Self::Error> {
         let item = cur.union_unpack()?;
@@ -216,15 +216,15 @@ impl TryFrom<Cursor> for DidWeb5Data {
         cur.add_offset(NUMBER_SIZE)?;
         cur.sub_size(NUMBER_SIZE)?;
         match item.item_id {
-            0usize => Ok(Self::DidWeb5DataV1(cur.into())),
+            0usize => Ok(Self::DidCkbDataV1(cur.into())),
             _ => Err(Error::UnknownItem),
         }
     }
 }
-impl DidWeb5Data {
+impl DidCkbData {
     pub fn verify(&self, compatible: bool) -> Result<(), Error> {
         match self {
-            Self::DidWeb5DataV1(v) => {
+            Self::DidCkbDataV1(v) => {
                 v.verify(compatible)?;
                 Ok(())
             }

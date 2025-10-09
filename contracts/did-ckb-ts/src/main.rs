@@ -13,7 +13,7 @@ pub fn program_entry() -> i8 {
     #[cfg(feature = "enable_log")]
     {
         drop(ckb_std::logger::init());
-        log::info!("did-web5-ts, log enabled");
+        log::info!("did-ckb-ts, log enabled");
     }
     match entry::entry() {
         Ok(_) => 0,

@@ -82,7 +82,7 @@ importers:
         specifier: ^11.0.4
         version: 11.0.4
 
-  ts-tests/did-web5-ts:
+  ts-tests/did-ckb-ts:
     dependencies:
       '@atproto/common':
         specifier: ~0.4.11

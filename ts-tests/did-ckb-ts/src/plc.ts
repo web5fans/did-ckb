@@ -105,7 +105,7 @@ export async function generateOperations(config?: {
   };
 }
 
-export async function signDidWeb5(
+export async function signDidCkb(
   result: PlcOperationResult,
   rotationKeyIndex: number,
   msg: Hex,

@@ -8,11 +8,11 @@ import {
   Num,
 } from "@ckb-ccc/core";
 
-// table DidWeb5DataV1 {
+// table DidCkbDataV1 {
 //     document: Bytes,
 //     localId: StringOpt,
 // }
-export type DidWeb5DataV1Like = {
+export type DidCkbDataV1Like = {
   document: HexLike;
   localId?: HexLike | null;
 };
@@ -23,9 +23,9 @@ export type DidWeb5DataV1Like = {
     localId: mol.BytesOpt,
   }),
 )
-export class DidWeb5DataV1 extends mol.Entity.Base<
-  DidWeb5DataV1Like,
-  DidWeb5DataV1
+export class DidCkbDataV1 extends mol.Entity.Base<
+  DidCkbDataV1Like,
+  DidCkbDataV1
 >() {
   constructor(
     public document: Hex,
@@ -34,46 +34,43 @@ export class DidWeb5DataV1 extends mol.Entity.Base<
     super();
   }
 
-  static from(data: DidWeb5DataV1Like): DidWeb5DataV1 {
-    if (data instanceof DidWeb5DataV1) {
+  static from(data: DidCkbDataV1Like): DidCkbDataV1 {
+    if (data instanceof DidCkbDataV1) {
       return data;
     }
-    return new DidWeb5DataV1(
+    return new DidCkbDataV1(
       hexFrom(data.document),
       data.localId ? hexFrom(data.localId) : undefined,
     );
   }
 }
 
-// union DidWeb5Data {
-//   DidWeb5DataV1,
+// union DidCkbData {
+//   DidCkbDataV1,
 // }
 
-export type DidWeb5DataLike = {
-  value: DidWeb5DataV1Like;
+export type DidCkbDataLike = {
+  value: DidCkbDataV1Like;
 };
 
 @mol.codec(
   mol.union({
-    DidWeb5DataV1,
+    DidCkbDataV1,
   }),
 )
-export class DidWeb5Data extends mol.Entity.Base<
-  DidWeb5DataLike,
-  DidWeb5Data
->() {
+export class DidCkbData extends mol.Entity.Base<DidCkbDataLike, DidCkbData>() {
   constructor(
-    public type: "DidWeb5DataV1",
-    public value: DidWeb5DataV1,
+    public type: "DidCkbDataV1",
+    public value: DidCkbDataV1,
   ) {
     super();
   }
 
-  static from(data: DidWeb5DataLike): DidWeb5Data {
-    if (data instanceof DidWeb5Data) {
+  static from(data: DidCkbDataLike): DidCkbData {
+    if (data instanceof DidCkbData) {
       return data;
     }
-    return new DidWeb5Data("DidWeb5DataV1", DidWeb5DataV1.from(data.value));
+    return new DidCkbData("DidCkbDataV1", DidCkbDataV1.from(data.value));
   }
 }
 
@@ -119,11 +116,11 @@ export class PlcAuthorization extends mol.Entity.Base<
   }
 }
 
-// table DidWeb5Witness {
+// table DidCkbWitness {
 //   localIdAuthorization: PlcAuthorization,
 // }
 
-export type DidWeb5WitnessLike = {
+export type DidCkbWitnessLike = {
   localIdAuthorization: PlcAuthorizationLike;
 };
 
@@ -132,19 +129,19 @@ export type DidWeb5WitnessLike = {
     localIdAuthorization: PlcAuthorization,
   }),
 )
-export class DidWeb5Witness extends mol.Entity.Base<
-  DidWeb5WitnessLike,
-  DidWeb5Witness
+export class DidCkbWitness extends mol.Entity.Base<
+  DidCkbWitnessLike,
+  DidCkbWitness
 >() {
   constructor(public localIdAuthorization: PlcAuthorization) {
     super();
   }
 
-  static from(data: DidWeb5WitnessLike): DidWeb5Witness {
-    if (data instanceof DidWeb5Witness) {
+  static from(data: DidCkbWitnessLike): DidCkbWitness {
+    if (data instanceof DidCkbWitness) {
       return data;
     }
-    return new DidWeb5Witness(PlcAuthorization.from(data.localIdAuthorization));
+    return new DidCkbWitness(PlcAuthorization.from(data.localIdAuthorization));
   }
 }
 

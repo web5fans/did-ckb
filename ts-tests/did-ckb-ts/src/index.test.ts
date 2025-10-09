@@ -32,8 +32,8 @@ if (process.env.CKB_COVERAGE) {
 export const DEFAULT_SCRIPT = path.join(
   __dirname,
   process.env.CKB_COVERAGE
-    ? "../../../build/debug/did-web5-ts"
-    : "../../../build/release/did-web5-ts",
+    ? "../../../build/debug/did-ckb-ts"
+    : "../../../build/release/did-ckb-ts",
 );
 
 export const DEFAULT_SCRIPT_HEX = hexFrom(readFileSync(DEFAULT_SCRIPT));
@@ -94,7 +94,7 @@ async function main(
   // When testing invalid CBOR scenarios, use "0x82" which represents a CBOR array
   // expecting 2 elements but provides none, making it invalid CBOR format
   let cborData = config?.invalidCbor ? bytesFrom("0x82") : cbor.encode("");
-  let didWeb5Data = molecule.DidWeb5Data.from({
+  let didCkbData = molecule.DidCkbData.from({
     value: {
       document: cborData,
       localId: transferredFrom,
@@ -109,7 +109,7 @@ async function main(
     const inputCell = resource.mockCell(
       alwaysSuccessScript,
       typeScript,
-      hexFrom(didWeb5Data.toBytes()),
+      hexFrom(didCkbData.toBytes()),
     );
     // input cells
     for (let i = 0; i < (config?.inputCellCount ?? 1); i++) {
@@ -121,15 +121,15 @@ async function main(
       tx.outputs.push(
         Resource.createCellOutput(alwaysSuccessScript, typeScript),
       );
-      let newDidWeb5Data = didWeb5Data.clone();
+      let newDidCkbData = didCkbData.clone();
       if (config?.updateLocalId) {
-        newDidWeb5Data.value.localId = hexFrom(newLocalId("0x00"));
+        newDidCkbData.value.localId = hexFrom(newLocalId("0x00"));
       } else {
-        newDidWeb5Data.value.document = hexFrom(
+        newDidCkbData.value.document = hexFrom(
           cbor.encode({ key: "hello, world" }),
         );
       }
-      tx.outputsData.push(hexFrom(newDidWeb5Data.toBytes()));
+      tx.outputsData.push(hexFrom(newDidCkbData.toBytes()));
     }
   } else {
     // input cells
@@ -148,7 +148,7 @@ async function main(
       tx.outputs.push(
         Resource.createCellOutput(alwaysSuccessScript, typeScript),
       );
-      tx.outputsData.push(hexFrom(didWeb5Data.toBytes()));
+      tx.outputsData.push(hexFrom(didCkbData.toBytes()));
     }
   }
 
@@ -159,12 +159,12 @@ async function main(
       result.rotationKeyIndices.push(0n);
       result.sig = "0x00";
     } else {
-      await plc.signDidWeb5(result, 0, txHash);
+      await plc.signDidCkb(result, 0, txHash);
     }
     if (!result.sig) {
       throw new Error("Signature is required");
     }
-    let web5Witness = molecule.DidWeb5Witness.from({
+    let ckbWitness = molecule.DidCkbWitness.from({
       localIdAuthorization: {
         history: result.history,
         sig: result.sig,
@@ -172,7 +172,7 @@ async function main(
       },
     });
     if (config?.moleculeCompatible) {
-      web5Witness = molecule.TestWitness.from({
+      ckbWitness = molecule.TestWitness.from({
         localIdAuthorization: {
           history: result.history,
           sig: result.sig,
@@ -182,7 +182,7 @@ async function main(
       });
     }
     let witnessArgs = WitnessArgs.from({
-      outputType: web5Witness.toBytes(),
+      outputType: ckbWitness.toBytes(),
     });
     tx.setWitnessArgsAt(0, witnessArgs);
   }
@@ -211,7 +211,7 @@ async function main(
   }
 }
 
-describe("did-web5-ts", () => {
+describe("did-ckb-ts", () => {
   test("it should process a genesis operation without associated did:plc correctly", async () => {
     let result = await plc.generateOperations();
     await main(result, { noAssociatePlc: true });
@@ -315,21 +315,21 @@ describe("did-web5-ts", () => {
       },
     };
 
-    const didWeb5Data0 = molecule.DidWeb5Data.from({
+    const didCkbData0 = molecule.DidCkbData.from({
       value: {
         document: cbor.encode(doc0),
         localId: null,
       },
     });
-    const didWeb5Data1 = molecule.DidWeb5Data.from({
+    const didCkbData1 = molecule.DidCkbData.from({
       value: {
         document: cbor.encode(doc1),
         localId: null,
       },
     });
 
-    expect(didWeb5Data0).toMatchSnapshot("data0");
-    expect(didWeb5Data1).toMatchSnapshot("data1");
+    expect(didCkbData0).toMatchSnapshot("data0");
+    expect(didCkbData1).toMatchSnapshot("data1");
 
     // Creation Example
     {
@@ -349,7 +349,7 @@ describe("did-web5-ts", () => {
           numFrom(600),
         ),
       );
-      tx.outputsData.push(hexFrom(didWeb5Data0.toBytes()));
+      tx.outputsData.push(hexFrom(didCkbData0.toBytes()));
 
       const verifier = Verifier.from(resource, tx);
       const txJson = jsonify(tx);
@@ -369,7 +369,7 @@ describe("did-web5-ts", () => {
       const inputCell = new Cell(
         new OutPoint(previousTxHash, numFrom(0)),
         new CellOutput(numFrom(600), alwaysSuccessScript, typeScript),
-        hexFrom(didWeb5Data0.toBytes()),
+        hexFrom(didCkbData0.toBytes()),
       );
       resource.cells.set(inputCell.outPoint.toBytes().toString(), inputCell);
       tx.inputs.push(Resource.createCellInput(inputCell));
@@ -381,7 +381,7 @@ describe("did-web5-ts", () => {
           numFrom(599),
         ),
       );
-      tx.outputsData.push(hexFrom(didWeb5Data1.toBytes()));
+      tx.outputsData.push(hexFrom(didCkbData1.toBytes()));
 
       const verifier = Verifier.from(resource, tx);
       const txJson = jsonify(tx);
@@ -401,7 +401,7 @@ describe("did-web5-ts", () => {
       const inputCell = new Cell(
         new OutPoint(previousTxHash, numFrom(0)),
         new CellOutput(numFrom(599), alwaysSuccessScript, typeScript),
-        hexFrom(didWeb5Data1.toBytes()),
+        hexFrom(didCkbData1.toBytes()),
       );
       resource.cells.set(inputCell.outPoint.toBytes().toString(), inputCell);
       tx.inputs.push(Resource.createCellInput(inputCell));
@@ -469,7 +469,7 @@ describe("did-web5-ts", () => {
         },
       },
     };
-    const didWeb5Data = molecule.DidWeb5Data.from({
+    const didCkbData = molecule.DidCkbData.from({
       value: {
         document: cbor.encode(doc),
         localId,
@@ -487,9 +487,9 @@ describe("did-web5-ts", () => {
     tx.outputs.push(
       Resource.createCellOutput(alwaysSuccessScript, typeScript, numFrom(600)),
     );
-    tx.outputsData.push(hexFrom(didWeb5Data.toBytes()));
+    tx.outputsData.push(hexFrom(didCkbData.toBytes()));
 
-    await plc.signDidWeb5(migration, 0, tx.hash());
+    await plc.signDidCkb(migration, 0, tx.hash());
     expect(migration.sig).toBeTruthy();
     if (!migration.sig) {
       throw new Error("Signature is required");
@@ -497,16 +497,16 @@ describe("did-web5-ts", () => {
     expect(cbor.decode(bytesFrom(migration.history[0]!))).toMatchSnapshot(
       "plc-genesis-op",
     );
-    const web5Witness = molecule.DidWeb5Witness.from({
+    const ckbWitness = molecule.DidCkbWitness.from({
       localIdAuthorization: {
         history: migration.history,
         sig: migration.sig,
         rotationKeyIndices: migration.rotationKeyIndices,
       },
     });
-    expect(jsonify(web5Witness)).toMatchSnapshot("witness");
+    expect(jsonify(ckbWitness)).toMatchSnapshot("witness");
     let witnessArgs = WitnessArgs.from({
-      outputType: web5Witness.toBytes(),
+      outputType: ckbWitness.toBytes(),
     });
     tx.setWitnessArgsAt(0, witnessArgs);
     const verifier = Verifier.from(resource, tx);

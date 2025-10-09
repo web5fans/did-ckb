@@ -1,7 +1,7 @@
 {
   "cell_recipes": [
     {
-      "name": "did-web5-ts",
+      "name": "did-ckb-ts",
       "tx_hash": "0x9a1f8ac876408b4c735fb083a3da575b1dc8494b8a422e11ba2561d563d7a84a",
       "index": 0,
       "occupied_capacity": 20593400000000,

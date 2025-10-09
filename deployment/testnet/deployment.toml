@@ -1,7 +1,7 @@
 [[cells]]
-name = "did-web5-ts"
+name = "did-ckb-ts"
 enable_type_id = true
-location = { file = "../../build/release/did-web5-ts" }
+location = { file = "../../build/release/did-ckb-ts" }
 
 # The lock script set to output cells
 [lock]

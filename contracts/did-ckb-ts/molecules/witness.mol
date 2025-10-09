@@ -8,7 +8,7 @@ table PlcAuthorization {
     rotation_key_indices: Uint8Vec,
 }
 
-table DidWeb5Witness {
+table DidCkbWitness {
     local_id_authorization: PlcAuthorization,
 }
 

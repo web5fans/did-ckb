@@ -1,4 +1,4 @@
-name: ckb-did-plc-utils
+name: did-ckb-ci
 
 on:
   push:

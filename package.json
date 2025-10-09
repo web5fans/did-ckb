@@ -2,7 +2,7 @@
   "private": true,
   "workspaces": [
     "tools/gen-test-vectors",
-    "ts-tests/did-web5-ts"
+    "ts-tests/did-ckb-ts"
   ],
   "scripts": {
     "build": "pnpm -r run build",

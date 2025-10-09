@@ -1,10 +1,10 @@
 
-// generated unit test for contract did-web5-ts
+// generated unit test for contract did-ckb-ts
 #[test]
-fn test_did_web5_ts() {
+fn test_did_ckb_ts() {
     // deploy contract
     let mut context = Context::default();
-    let contract_bin: Bytes = Loader::default().load_binary("did-web5-ts");
+    let contract_bin: Bytes = Loader::default().load_binary("did-ckb-ts");
     let out_point = context.deploy_cell(contract_bin);
 
     // prepare scripts

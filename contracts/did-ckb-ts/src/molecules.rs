@@ -77,13 +77,13 @@ impl From<DataReader> for Cursor {
     }
 }
 
-pub fn new_data(index: usize, source: Source) -> Result<DidWeb5DataV1, Error> {
+pub fn new_data(index: usize, source: Source) -> Result<DidCkbDataV1, Error> {
     let reader = DataReader::new(index, source);
     let cursor: Cursor = reader.into();
-    let data = DidWeb5Data::try_from(cursor)?;
+    let data = DidCkbData::try_from(cursor)?;
     data.verify(false)?;
 
-    let DidWeb5Data::DidWeb5DataV1(data) = data;
+    let DidCkbData::DidCkbDataV1(data) = data;
     let doc: Vec<u8> = data
         .document()?
         .try_into()
@@ -138,11 +138,11 @@ pub fn new_witness_args(index: usize, source: Source) -> Result<witness::Witness
     Ok(witness_args)
 }
 
-pub fn new_witness() -> Result<witness::DidWeb5Witness, Error> {
+pub fn new_witness() -> Result<witness::DidCkbWitness, Error> {
     let witness_args = new_witness_args(0, Source::GroupOutput)?;
     let output_type = witness_args.output_type()?;
     let output_type = output_type.ok_or(Error::Molecule)?;
-    let witness = DidWeb5Witness::from(output_type);
+    let witness = DidCkbWitness::from(output_type);
     witness.verify(false)?;
     Ok(witness)
 }

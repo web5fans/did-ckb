@@ -282,21 +282,21 @@ impl PlcAuthorization {
     }
 }
 #[derive(Clone)]
-pub struct DidWeb5Witness {
+pub struct DidCkbWitness {
     pub cursor: Cursor,
 }
-impl From<Cursor> for DidWeb5Witness {
+impl From<Cursor> for DidCkbWitness {
     fn from(cursor: Cursor) -> Self {
-        DidWeb5Witness { cursor }
+        DidCkbWitness { cursor }
     }
 }
-impl DidWeb5Witness {
+impl DidCkbWitness {
     pub fn local_id_authorization(&self) -> Result<PlcAuthorization, Error> {
         let cur = self.cursor.table_slice_by_index(0usize)?;
         Ok(cur.into())
     }
 }
-impl DidWeb5Witness {
+impl DidCkbWitness {
     pub fn verify(&self, compatible: bool) -> Result<(), Error> {
         self.cursor.verify_table(1usize, compatible)?;
         self.local_id_authorization()?.verify(compatible)?;

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`did-web5-ts it should re-create the local id extension example: local-id 1`] = `"did:plc:bxvfvvygwbcnbmknn73t6pbu"`;
+exports[`did-ckb-ts it should re-create the local id extension example: local-id 1`] = `"did:plc:bxvfvvygwbcnbmknn73t6pbu"`;
 
-exports[`did-web5-ts it should re-create the local id extension example: local-id-migration-tx 1`] = `
+exports[`did-ckb-ts it should re-create the local id extension example: local-id-migration-tx 1`] = `
 {
   "cellDeps": [
     {
@@ -55,9 +55,9 @@ exports[`did-web5-ts it should re-create the local id extension example: local-i
 }
 `;
 
-exports[`did-web5-ts it should re-create the local id extension example: local-id-migration-tx-hash 1`] = `"0xcb86447276a89c20276a667ada34640341e9e9ea47b68548241a934ff49e9fea"`;
+exports[`did-ckb-ts it should re-create the local id extension example: local-id-migration-tx-hash 1`] = `"0xcb86447276a89c20276a667ada34640341e9e9ea47b68548241a934ff49e9fea"`;
 
-exports[`did-web5-ts it should re-create the local id extension example: plc-genesis-op 1`] = `
+exports[`did-ckb-ts it should re-create the local id extension example: plc-genesis-op 1`] = `
 {
   "alsoKnownAs": [
     "at://alice.example.com",
@@ -81,7 +81,7 @@ exports[`did-web5-ts it should re-create the local id extension example: plc-gen
 }
 `;
 
-exports[`did-web5-ts it should re-create the local id extension example: witness 1`] = `
+exports[`did-ckb-ts it should re-create the local id extension example: witness 1`] = `
 {
   "localIdAuthorization": {
     "history": [
@@ -96,7 +96,7 @@ exports[`did-web5-ts it should re-create the local id extension example: witness
 }
 `;
 
-exports[`did-web5-ts it should re-create the spec example: creation-tx 1`] = `
+exports[`did-ckb-ts it should re-create the spec example: creation-tx 1`] = `
 {
   "cellDeps": [
     {
@@ -147,11 +147,11 @@ exports[`did-web5-ts it should re-create the spec example: creation-tx 1`] = `
 }
 `;
 
-exports[`did-web5-ts it should re-create the spec example: creation-tx-hash 1`] = `"0xe54bb705cea6e500767ed4c0ba9ee92cad71e6b39c55283591147c5d10cc12b5"`;
+exports[`did-ckb-ts it should re-create the spec example: creation-tx-hash 1`] = `"0xe54bb705cea6e500767ed4c0ba9ee92cad71e6b39c55283591147c5d10cc12b5"`;
 
-exports[`did-web5-ts it should re-create the spec example: data0 1`] = `
+exports[`did-ckb-ts it should re-create the spec example: data0 1`] = `
 Extended {
-  "type": "DidWeb5DataV1",
+  "type": "DidCkbDataV1",
   "value": Extended {
     "document": "0xa3687365727669636573a16b617470726f746f5f706473a264747970657819417470726f746f506572736f6e616c4461746153657276657268656e64706f696e747468747470733a2f2f6578616d706c652e746573746b616c736f4b6e6f776e4173816f61743a2f2f616c6963652e7465737473766572696669636174696f6e4d6574686f6473a167617470726f746f736469643a6b65793a7a5369676e696e674b6579",
     "localId": undefined,
@@ -159,9 +159,9 @@ Extended {
 }
 `;
 
-exports[`did-web5-ts it should re-create the spec example: data1 1`] = `
+exports[`did-ckb-ts it should re-create the spec example: data1 1`] = `
 Extended {
-  "type": "DidWeb5DataV1",
+  "type": "DidCkbDataV1",
   "value": Extended {
     "document": "0xa3687365727669636573a16b617470726f746f5f706473a264747970657819417470726f746f506572736f6e616c4461746153657276657268656e64706f696e747468747470733a2f2f6578616d706c652e746573746b616c736f4b6e6f776e4173816d61743a2f2f626f622e7465737473766572696669636174696f6e4d6574686f6473a167617470726f746f736469643a6b65793a7a5369676e696e674b6579",
     "localId": undefined,
@@ -169,7 +169,7 @@ Extended {
 }
 `;
 
-exports[`did-web5-ts it should re-create the spec example: deactivation-tx 1`] = `
+exports[`did-ckb-ts it should re-create the spec example: deactivation-tx 1`] = `
 {
   "cellDeps": [
     {
@@ -215,7 +215,7 @@ exports[`did-web5-ts it should re-create the spec example: deactivation-tx 1`] =
 }
 `;
 
-exports[`did-web5-ts it should re-create the spec example: update-tx 1`] = `
+exports[`did-ckb-ts it should re-create the spec example: update-tx 1`] = `
 {
   "cellDeps": [
     {
@@ -266,4 +266,4 @@ exports[`did-web5-ts it should re-create the spec example: update-tx 1`] = `
 }
 `;
 
-exports[`did-web5-ts it should re-create the spec example: update-tx-hash 1`] = `"0x781140553ba39702e39f6d8c851512549c7b930e1cb34200ab2e1b73354eccbb"`;
+exports[`did-ckb-ts it should re-create the spec example: update-tx-hash 1`] = `"0x781140553ba39702e39f6d8c851512549c7b930e1cb34200ab2e1b73354eccbb"`;

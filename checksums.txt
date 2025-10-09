@@ -1,1 +1,1 @@
-98dc0608e2e04c1879b5e2f22d3fe323e0ecab4bc924bc9b7b93d8839266c6de  build/release/did-web5-ts
+f7f448aa2c4b844fef9bcbc89015f5d68f6f8ad696f69ba495e4c95bc1073657  build/release/did-ckb-ts
