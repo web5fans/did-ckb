@@ -1,0 +1,13 @@
+{
+  "cell_recipes": [
+    {
+      "name": "did-ckb-ts",
+      "tx_hash": "0xe2f74c56cdc610d2b9fe898a96a80118845f5278605d7f9ad535dad69ae015bf",
+      "index": 0,
+      "occupied_capacity": 20474200000000,
+      "data_hash": "0x079bb8c1dfb249f60d932f4b1a60fa5cb2a36af3653ac09464f262e2f3f682a9",
+      "type_id": "0x4a06164dc34dccade5afe3e847a97b6db743e79f5477fa3295acf02849c5984a"
+    }
+  ],
+  "dep_group_recipes": []
+}

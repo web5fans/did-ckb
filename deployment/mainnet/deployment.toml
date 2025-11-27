@@ -1,0 +1,10 @@
+[[cells]]
+name = "did-ckb-ts"
+enable_type_id = true
+location = { file = "../../build/release/did-ckb-ts" }
+
+[lock]
+# locked by mutlsig v2. See verify.sh and README.md for more information
+code_hash = "0x36c971b8d41fbd94aabca77dc75e826729ac98447b46f91e00796155dddb0d29"
+args = "0x3c1838d9f46dc1cba81f39cbe92b71cde1c0c6a8"
+hash_type = "data1"
